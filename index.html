@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>YCM.GG</h1>
+        <nav>
+            <a href="">Home</a>
+            <a href="">Update</a>
+            <a href=""></a>
+        </nav>
+    </header>
+    <div id="site-content">
+        <div class="flex-square">
+            <div class="square"><p>English</p><p class="number">20</p><p>minut</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">20m 00s</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square">
+                <p>Warsaw</p>
+                <p class="number">ENG</p>
+                <div>
+                    <span class="min">20m</span>
+                    <span class="sec">00s</span>
+                </div>
+                <span class="duration"></span>
+                <div>
+                    <button onclick="startStop(0)" class="start">Start</button>
+                    <button onclick="reset(0)">Reset</button>
+                </div>
+            </div>
+            <div class="square">
+              <p>Warsaw</p>
+              <p class="number2">English</p>
+              <div>
+                  <span class="min">20m</span>
+                  <span class="sec">00s</span>
+              </div>
+              <div>
+                  <button onclick="startStop(1)" class="start">Start</button>
+                  <button onclick="reset(1)">Reset</button>
+              </div>
+          </div>
+
+                
+        </div>
+        
+    </div>
+    <footer>
+        <p>2023</p>
+    </footer>
+</body>
+<script>
+var x;
+var startstop = 0;
+let index = 0;
+let duration = 0;
+function startStop(index_value) {
+  index = index_value;
+  startstop = startstop + 1;
+  if (startstop === 1) {
+    start();
+    document.getElementsByClassName("start")[index].innerHTML = "Stop";
+  } else if (startstop === 2) {
+    document.getElementsByClassName("start")[index].innerHTML = "Start";
+    startstop = 0;
+    stop();
+  }
+}
+function start() {
+  x = setInterval(timer, 1000);
+} 
+function stop() {
+  clearInterval(x);
+  if(duration > 60)
+  {
+    duration_min = duration / 60;
+    duration_sec = duration % 60;
+    document.getElementsByClassName("duration")[index].innerHTML = duration_min + "m" + duration_sec + "s";
+  } else {
+    document.getElementsByClassName("duration")[index].innerHTML = duration + "s";
+  }
+  
+}
+var sec = 5;
+var min = 0;
+var secOut = 0;
+var minOut = 0;
+function timer() {
+  secOut = checkTime(sec);
+  minOut = checkTime(min);
+  sec = --sec;
+  duration = ++duration;
+  document.getElementsByClassName("sec")[index].innerHTML = secOut + "s";
+  if(min != 0)
+  {
+    document.getElementsByClassName("min")[index].innerHTML = minOut + "m";
+  } else {
+    document.getElementsByClassName("min")[index].innerHTML = "";
+  }
+  if (sec == -1) {
+    min = --min;
+    sec = 59;
+  }
+  if (min == 0 && sec == 0) {
+    document.getElementsByClassName("sec")[index].innerHTML = "";
+    stop();
+  } 
+}
+function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+function reset(index_value) {
+  index = index_value;
+  sec = 0;
+  min = 20;
+  document.getElementsByClassName("sec")[index].innerHTML = "00m";
+  document.getElementsByClassName("min")[index].innerHTML = "00s";
+  stop();
+}
+/*var x;
+var startstop = 0;
+let index = 0;
+function startStop(index_value) {
+  index = index_value;
+  startstop = startstop + 1;
+  if (startstop === 1) {
+    start();
+    document.getElementsByClassName("start")[index].innerHTML = "Stop";
+  } else if (startstop === 2) {
+    document.getElementsByClassName("start")[index].innerHTML = "Start";
+    startstop = 0;
+    stop();
+  }
+}
+function start() {
+  x = setInterval(timer, 1000);
+} 
+function stop() {
+  clearInterval(x);
+}
+var sec = 5;
+var min = 0;
+var secOut = 0;
+var minOut = 0;
+function timer() {
+  secOut = checkTime(sec);
+  minOut = checkTime(min);
+  sec = --sec;
+  document.getElementsByClassName("sec")[index].innerHTML = secOut + "s";
+  document.getElementsByClassName("min")[index].innerHTML = minOut + "m";
+  if (sec == -1) {
+    min = --min;
+    sec = 59;
+  }
+  if (min == 0 && sec == 0) {
+    stop();
+  } 
+}
+function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+function reset(index_value) {
+  index = index_value;
+  sec = 0;
+  min = 20;
+  document.getElementsByClassName("sec")[index].innerHTML = "00m";
+  document.getElementsByClassName("min")[index].innerHTML = "00s";
+  stop();
+}*/
+</script>
+</html>
