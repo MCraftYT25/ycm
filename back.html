@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>YCM.GG</h1>
+        <nav>
+            <a href="">Home</a>
+            <a href="">Update</a>
+            <a href=""></a>
+        </nav>
+    </header>
+    <div id="site-content">
+        <div class="flex-square">
+            <div class="square"><p>English</p><p class="number">20</p><p class="time">minut</p><button onclick="start();">Start</button><button onclick="stop();">Stop</button></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">20m 00s</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square"><p>Warsaw</p><p class="number">2005</p><p>Warsaw</p><p>Warsaw</p></div>
+            <div class="square">
+                <p>Warsaw</p>
+                <p class="number">ENG</p>
+                <div>
+                    <span id="min">20m</span>
+                    <span id="sec">00s</span>
+                </div>
+                <div>
+                    <button onclick="startStop()" id="start">Start</button>
+                    <button onclick="reset()">Reset</button>
+                </div>
+                
+            </div>
+
+                
+        </div>
+        
+    </div>
+    <footer>
+        <p>2023</p>
+    </footer>
+</body>
+<script>
+    /*function start()
+    {
+        var countDownDate = new Date("Jan 5, 2024 15:37:25").getTime();
+        var countDownDate = new Date().getTime() + 1200000;
+        var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementsByClassName("time")[0].innerHTML = minutes + "m " + seconds + "s ";
+
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "EXPIRED";
+        }
+        }, 1000);
+    }*/
+var x;
+var startstop = 0;
+
+function startStop() {
+  startstop = startstop + 1;
+  if (startstop === 1) {
+    start();
+    document.getElementById("start").innerHTML = "Stop";
+  } else if (startstop === 2) {
+    document.getElementById("start").innerHTML = "Start";
+    startstop = 0;
+    stop();
+  }
+}
+function start() {
+  x = setInterval(timer, 1000);
+} 
+function stop() {
+  clearInterval(x);
+}
+var sec = 0;
+var min = 20;
+var secOut = 0;
+var minOut = 0;
+function timer() {
+  secOut = checkTime(sec);
+  minOut = checkTime(min);
+  sec = --sec;
+  document.getElementById("sec").innerHTML = secOut + "s";
+  document.getElementById("min").innerHTML = minOut + "m";
+  if (sec == -1) {
+    min = --min;
+    sec = 59;
+  }
+  if (min == 0) {
+    document.getElementById("sec").innerHTML = "0" + "s";
+    document.getElementById("min").innerHTML = "0" + "m";
+    stop();
+  } 
+}
+function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+function reset() {
+  sec = 0;
+  min = 20;
+  document.getElementById("sec").innerHTML = "00m";
+  document.getElementById("min").innerHTML = "00s";
+}
+
+
+
+/*
+var x;
+var startstop = 0;
+
+function startStop() { 
+
+    startstop = startstop + 1;
+
+if (startstop === 1) {
+  start();
+  document.getElementById("start").innerHTML = "Stop";
+} else if (startstop === 2) {
+  document.getElementById("start").innerHTML = "Start";
+  startstop = 0;
+  stop();
+}
+
+}
+
+
+function start() {
+x = setInterval(timer, 10);
+} 
+
+function stop() {
+clearInterval(x);
+} 
+
+var milisec = 0;
+var sec = 0; 
+var min = 0;
+var hour = 0;
+
+
+
+var miliSecOut = 0;
+var secOut = 0;
+var minOut = 0;
+var hourOut = 0;
+
+
+
+
+function timer() {
+
+
+
+miliSecOut = checkTime(milisec);
+secOut = checkTime(sec);
+minOut = checkTime(min);
+hourOut = checkTime(hour);
+
+milisec = ++milisec;
+
+if (milisec === 100) {
+  milisec = 0;
+  sec = ++sec;
+}
+
+if (sec == 60) {
+  min = ++min;
+  sec = 0;
+}
+
+if (min == 60) {
+  min = 0;
+  hour = ++hour;
+
+}
+
+
+document.getElementById("milisec").innerHTML = miliSecOut;
+document.getElementById("sec").innerHTML = secOut;
+document.getElementById("min").innerHTML = minOut;
+document.getElementById("hour").innerHTML = hourOut;
+
+}
+
+
+
+
+
+function checkTime(i) {
+if (i < 10) {
+  i = "0" + i;
+}
+return i;
+}
+
+function reset() {
+
+
+milisec = 0;
+sec = 0;
+min = 0
+hour = 0;
+
+document.getElementById("milisec").innerHTML = "00";
+document.getElementById("sec").innerHTML = "00";
+document.getElementById("min").innerHTML = "00";
+document.getElementById("hour").innerHTML = "00";
+
+}
+*/
+
+
+
+
+
+/*
+var x;
+var startstop = 0;
+
+function startStop() {
+  startstop = startstop + 1;
+  if (startstop === 1) {
+    start();
+    document.getElementById("start").innerHTML = "Stop";
+  } else if (startstop === 2) {
+    document.getElementById("start").innerHTML = "Start";
+    startstop = 0;
+    stop();
+  }
+}
+function start() {
+  x = setInterval(timer, 1000);
+} 
+function stop() {
+  clearInterval(x);
+}
+var sec = 0;
+var min = 0;
+var secOut = 0;
+var minOut = 0;
+function timer() {
+  secOut = checkTime(sec);
+  minOut = checkTime(min);
+  sec = ++sec;
+  if (sec == 60) {
+    min = ++min;
+    sec = 0;
+  }
+  if (min == 60) {
+    min = 0;
+    hour = ++hour;
+
+  }
+  document.getElementById("sec").innerHTML = secOut + "s";
+  document.getElementById("min").innerHTML = minOut + "m";
+}
+function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+function reset() {
+  milisec = 0;
+  sec = 0;
+  min = 0
+  hour = 0;
+  document.getElementById("sec").innerHTML = "00";
+  document.getElementById("min").innerHTML = "00";
+}*/
+</script>
+</html>
